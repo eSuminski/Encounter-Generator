@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monster content template</title>
+</head>
+<body>
+    <!-- this page is being used to determine what the monster spec section on the index page will look like -->
+    <div id="categories" style="display:flex">
+        <!-- 
+            categories needed:
+                - Challenge Rating *
+                - Terrain *
+                - Single monster or multiple monsters *
+                - martial or caster
+        -->
+        <div id="crContainer">
+            <label for="challengeRating">Chose a CR:</label>
+            <select name="cr" id="challengeRating">
+                <option value="">--Please choose an option--</option>
+                <!-- options will be dynamically generated -->
+            </select>
+        </div>
+        <div id="terrainContainer">
+            <label for="terrainSelector">Chose a terrain:</label>
+            <select name="terrain" id="terrainSelector">
+                <option value="">--Please choose an option--</option>
+                <!-- options will be dynamically generated -->
+            </select>
+        </div>
+        <div id="amountContainer">
+            <label for="amountSelector">One or many monsters:</label>
+            <select name="amount" id="amountSelector">
+                <option value="">--Please choose an option--</option>
+                <option value="single">single monster</option>
+                <option value="many">many monsters</option>
+            </select>
+        </div>
+        <div id="combatStyleContainer">
+            <!-- 
+                Note: the choice in this container will dynamically create a new set of options for the user
+            -->
+            <label for="combatStyleSelector">combat style:</label>
+            <select name="combatStyle" id="combatStyleSelector">
+                <option value="">--Please choose an option--</option>
+                <option value="martial">martial</option>
+                <option value="magic">magic</option>
+                <option value="mixed">mixed</option>
+            </select>
+        </div>
+    </div>
+</body>
+<script>
+    /*
+        web elements are given variables below
+    */
+
+    const challengeSelect = document.getElementById("challengeRating");
+    const terrainSelect = document.getElementById("terrainSelector");
+
+    /*
+        other needed variables are create below
+    */
+
+    const terrainOptions = [
+        "aquatic",
+        "coastal",
+        "desert",
+        "forest",
+        "hills",
+        "jungle",
+        "mountains",
+        "ocean",
+        "plains",
+        "rivers",
+        "swamp",
+        "outter planes",
+        "transitive planes",
+        "inner planes",
+        "urban",
+        "underground",
+        "caves"
+    ];
+    terrainOptions.sort();
+
+    /*
+        dynamically generating options for challenge rating selector below
+    */
+    for(let x = 1; x<= 20; x++){
+        let option = document.createElement("option");
+        option.value = x;
+        option.textContent = x;
+        option.id = `choice${x}`;
+        challengeSelect.appendChild(option);
+   }
+
+   /*
+        dynamically generate options for terrain selector below
+   */
+    for(let x = 0; x < terrainOptions.length; x++){
+        let option = document.createElement("option");
+        option.value = terrainOptions[x];
+        option.textContent = terrainOptions[x];
+        option.id = `choice${x+1}`;
+        terrainSelect.appendChild(option);
+    }
+
+</script>
+</html>
